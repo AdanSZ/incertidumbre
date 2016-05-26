@@ -1,0 +1,496 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb} %También puede ser amsfonts
+%\usepackage{amssymb}... para \restriction
+
+\theoremstyle{definition}
+\newtheorem{Def}{Definición}
+\newtheorem{Prop}{Proposición}
+
+\spanishdecimal{.}
+
+
+\mode<presentation> {
+  \usetheme{Madrid}
+  \setbeamercovered{transparent}
+}
+
+\title[Integral de Choquet] %
+{La integral de Choquet como operador de agregación}
+
+\author[Waissman]{Julio Waissman Vilanova}
+
+\institute[UNISON] %
+{Departamento de Matem\'aticas\\
+ \textbf{Universidad de Sonora}\\
+}
+
+\date{}
+
+\subject{Fuzzy Systems}
+
+
+\begin{document}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Plan de la presentación}
+  \tableofcontents
+  %  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Sección
+\section{Operadores de agregación}
+\begin{frame}
+  \frametitle{Introducción}
+  \begin{itemize}
+  \item Los operadores de agregación tienen que ver con \emph{agregar}
+    o \emph{fusionar} valores provenientes de diferentes fuentes, para
+    obtener un solo valor que los represente. El ejemplo prototipo es
+    la media aritmética.  \vskip 6 mm
+  \item Herramienta muy importante en la solución de problemas de toma
+    de decisión multicriterio (MCDM, por \emph {multi-criteria
+      decision making}) en los que, quien toma la decisión (DM, por
+    \emph {decision maker}) va a elegir una alternativa entre varias,
+    considerando diferentes puntos de vista o criterios.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Notación}
+  Partiendo de un \emph{conjunto de alternativas potenciales}
+    $$
+    X=X_1\times \ldots \times X_n,
+    $$
+    cada \emph{alternativa}
+    $$
+    x:=(x_1, \ldots, x_n)
+    $$ 
+    \vskip 2 mm
+    puede ser descrita como un vector de $n$ componentes, llamadas
+    \emph{criterios}.
+  \end{frame}
+  % DEFINICIÓN
+  \begin{frame}
+    \frametitle{Operación de agregación n--aria}
+    \begin{Def}
+      Una \emph{operación de agregación $n$--aria} es una función
+	$$
+	F^{(n)}:I^n \to I
+	$$
+	que satisface lo siguiente: \vskip 2 mm
+	\begin{itemize}
+        \item Monotonía. Esto es, si consideramos dos $n$--tuplas
+          $(x_1, \ldots, x_n)$ y $(y_1, \ldots, y_n)$ tal que
+          $x_i \le y_i$ para todo $i$, $1 \le i \le n$, se cumple
+          $F^{(n)}(x_1, \ldots, x_n ) \le F^{(n)} (y_1, \ldots, y_n)$.
+          \vskip 3 mm
+        \item Condiciones de frontera de la forma:
+		$$
+		\inf_{x \in I^n} F^{(n)}(x) = \inf I \mbox{\hspace{7
+                    mm} y \hspace{7 mm}} \sup_{x \in I^n} F^{(n)}(x) =
+                \sup I
+		$$
+              \end{itemize}
+            \end{Def}
+          \end{frame}
+
+          \begin{frame}
+            \frametitle{Operador de agregación}
+            \begin{Def} % Operador de agregación
+              Un \emph{operador de agregación} es una función
+	$$
+	F: \bigcup_{n \in \mathbb{N}} I^n \to I
+	$$ 
+	tal que: \vskip 3mm
+	\begin{itemize}
+	\item para todo $n>1$, $F^{(n)}=F _{|{I^{(n)}}}$ es una
+          operación de agregación $n$--aria.  \vskip 3 mm
+	\item $F^{(1)}$ es la identidad en I.
+	\end{itemize}
+      \end{Def}
+    \end{frame}
+
+    % Sección OPERADORES DE CONSENSO
+    \section{Operadores de consenso}
+
+    \begin{frame}
+      \frametitle{Operadores de consenso}
+      Las operaciones de consenso son aquellos tales que
+  $$
+  \min(x_1, \ldots, x_n) \le F(x_1, \ldots, x_n) \le \max(x_1, \ldots,
+  x_n).
+  $$
+  \vskip 3 mm Particularmente interesantes en la toma de decisión
+  difusa, al querer simular la agregación de información proveniente
+  de diferentes fuentes.
+\end{frame}
+
+% SubSecc. WAM
+\subsection{Media aritmética ponderada}
+  
+\begin{frame}
+  \frametitle{Media aritmética ponderada}
+  \begin{Def}
+    La \emph{media aritmética con peso} (WAM, por \emph{weighted
+      arithmetic mean}) se define: $M_{\mathbf{w}}$, donde
+    $\mathbf{w} = (w_1, \ldots,w_n)$, $w_i > 0$,
+    $\sum_{i=1}^n w_i = 1$ y
+    $$
+    M_{\mathbf{w}} = \sum_{i = 1}^n w_i x_i.
+    $$
+  \end{Def}
+\end{frame}
+
+% SubSecc. OWA
+\subsection{Promedio ponderado ordenado}
+
+\begin{frame}
+  \frametitle{Promedio ponderado ordenado}
+  \begin{Def}
+    Un \emph{promedio ponderado ordenado} (OWA, por \emph{ordered weighted
+      average}) de dimensión $n$ está dada por
+    $$
+    M'_{\mathbf{w}} = \sum_{i = 1}^n w_i x_{(i)},
+    $$
+    \vskip 4 mm donde $(\cdot)$ indica una permutación de
+    $\{ 1,\ldots , n\}$, tal que $x_{(1)} \le \ldots \le x_{(n)}$,
+    $w_i > 0$, $\sum_{i=1}^n w_i = 1$.
+  \end{Def}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sobre las WAM y los OWA}
+  \begin{itemize}
+  \item El OWA puede ser visto como la simetrización de la media
+    aritmética ponderada.  \vskip 5 mm
+  \item Tanto las WAM como los OWA figuran entre las operación de
+    agregación más utilizadas, en la solución de problemas MCDM.
+    \vskip 5 mm
+  \item La desventaja, muy conocida, es que no siempre es posible
+    representar mediante ellas las preferencias del DM.
+  \end{itemize}
+\end{frame}
+
+% SubSecc. ICh
+\subsection{Integral de Choquet}
+
+\begin{frame}
+  \frametitle{La integral de Choquet. Motivación}
+  \begin{itemize}
+  \item La desventaja que presentan la WAM y el OWA se convierten en
+    la principal motivación para el estudio de la integral de Choquet.
+    \vskip 6 mm
+  \item A diferencia de la WAM y el OWA, con la integral de Choquet es
+    posible representar las preferencias del DM, cuando existe
+    relación entre criterios.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Medida borrosa}
+  \begin{Def}
+    Una \emph {medida borrosa} o \emph{capacidad} sobre un conjunto de
+    índices $N=\{1,\ldots ,n \}$ es una función monótona
+    $\mu :2^N \to [0,1]$, con $\mu(\emptyset)=0$ y $\mu(N)=1$.
+  \end{Def}
+  \vskip 3 mm
+  \begin{itemize}
+  \item Se denota como $\mathcal F_N$ al conjunto de todas las medidas
+    borrosas sobre $N$.  \vskip 4 mm
+  \item Que sea monótona significa que $\mu (S) \le \mu (T)$ si
+    $S\subseteq T$.  \vskip 4 mm
+  \item $\mu (S)$ puede ser vista como el \emph{peso} que le
+    corresponde al subconjunto $S$ de criterios.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Integral de Choquet}
+  \begin{Def}
+    Dada $\mu \in \mathcal F_N$, la \emph {integral de Choquet} de
+    $x \in I^n$ respecto a $\mu$ se define como \vskip 2 mm
+      $$
+      \mathcal C_{\mu}(x):=\sum _{i=1}^n x_{(i)}[\mu (A_{(i)})-\mu
+      (A_{(i+1)})],
+      $$
+      \vskip 4 mm donde $A_{(i)}=\{ (i),\ldots ,(n)\}$ y $A_{n+1}=0$.
+    \end{Def}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Casos especiales}
+    \begin{itemize}
+    \item \emph {Propiedad de aditividad}. Una capacidad es aditiva si
+      para conjuntos disjuntos $S, T \subseteq N$, se tiene
+      $\mu (S \cup T)=\mu (S)+\mu (T)$.  
+      \vskip 4 mm 
+      \alert{Si $\mu$ es aditiva, la integral de Choquet se reduce a
+      una WAM.}  \vskip 8 mm
+    \item \emph {Propiedad de simetría}. Una capacidad es simétrica si
+      para cualesquiera subconjuntos de índices $S$ y $T$, $|S|=|T|$
+      implica $\mu (S)=\mu (T)$.  
+      \vskip 4 mm 
+      \alert{Si $\mu$
+      es simétrica, la integral de Choquet se reduce a un OWA.}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Caracterización de la integral de Choquet}
+    Una propiedad fundamental de la integral de Choquet, que resulta
+    de la definición, es: \vskip 2 mm
+    $$
+    \mathcal C_\mu (1_S, 0_{-S})=\mu (S), \hspace {3 mm} \forall S
+    \subseteq N.
+    $$
+    \vskip 3 mm 
+    donde, $(1_S, 0_{-S})$ denota una alternativa para la
+    que cada característica $x_i$ tomará el valor $1$ si $i \in S$ y
+    $0$ en otro caso.
+    \vskip 2 mm
+    \begin{center}
+    \alert{Se caracteriza completamente la integral de Choquet
+    al definir su valor en los casos extremos.}
+   \end{center}
+\end{frame}
+
+  % Sección EJEMPLO ILUSTRATIVO
+  \section{Ejemplo ilustrativo}
+
+  \begin{frame}
+    \frametitle{Ejemplo ilustrativo}
+    Sean $a$, $b$ y $c$ tres alternativas evaluadas sobre tres
+    criterios $x_1$, $x_2$ y $x_3$, esquematizados de la siguiente
+    forma:
+    $$
+      \begin{array}{rccc}
+        &  x_1 & x_2 & x_3 \\
+        a & 0.6 & 0.6 & 1\\
+        b & 0.9 & 0 & 1\\
+        c & 0 & 0.9 & 1
+      \end{array}
+     $$
+     \vskip 4 mm Se tratará de modelar la preferencia del DM:
+     $$
+     a \prec b \prec c
+     $$
+   \end{frame}
+
+   % Modelado con WAM
+   \subsection{Modelado con WAM}
+   \begin{frame}
+     \frametitle{Modelado con la media aritmética ponderada}
+     Obtener los pesos adecuados acorde a las preferencias, por
+     separado:
+        $$
+         \begin{tabular}{rc}
+           $b \prec c$: & $0.9 w_1+0w_2+1w_3<0w_1+0.9w_2+1w_3$\\
+                  & $w_1<w_2$\\
+                  % \\
+           $a \prec b$: & $0.6w_1+0.6w_2+1w_3<0.9w_1+0w_2+1w_3$\\
+                  & $\hspace {8 mm}w_2<0.5w_1$
+         \end{tabular}
+         $$
+         \vskip 2 mm Al tomar en cuenta la preferencia global del DM
+         $(a \prec b \prec c)$ tendremos:
+         $$
+         \begin{tabular}{rl}
+           $w_1<w_2<0.5w_1$ & No es posible
+         \end{tabular}
+         $$
+         \vskip 2 mm 
+         \alert{La media aritmética ponderada no modela la preferencia del DM.}
+       \end{frame}
+
+       % Modelado con OWA
+       \subsection{Modelado con OWA}
+       \begin{frame}
+         \frametitle{Modelado con un promedio ponderado ordenado}
+         Obtener los pesos adecuados: \vskip 2 mm
+        $$
+         \begin{tabular}{rc}
+           $b \prec c$: & $0 w_1+0.9w_2+1w_3<0w_1+0.9w_2+1w_3$\\
+                  & $0.9w_2+w_3<0.9w_2+w_3$ 
+         \end{tabular}
+         $$
+         \vskip 6 mm 
+         \alert{Al usar el OWA las alternativas $b$ y $c$ siempre tendrán el mismo valor.}
+       \end{frame}
+
+       % Modelado con ICh
+       \subsection{Modelado con la integral de Choquet}
+       \begin{frame}
+         \frametitle{Modelado con la integral de Choquet}
+         Tomando en cuenta que la integral de Choquet se define por
+         los vértices del $n$-cubo, lo que se requiere es obtener las
+         capacidades (o \emph{pesos}) correspondientes.
+         $$
+         \begin{tabular}{llll}
+           $0$ & $0$ & $0$ & $\mu(\emptyset)=0$, por definición\\
+           $1$ & $0$ & $0$ & $\mu(\{1\})$\\
+           $0$ & $1$ & $0$ & $\mu(\{2\})$\\ 
+           $0$ & $0$ & $1$ & $\mu(\{3\})$\\
+           $1$ & $1$ & $0$ & $\mu(\{1, 2\})$\\ 
+           $1$ & $0$ & $1$ & $\mu(\{1, 3\})$\\
+           $0$ & $1$ & $1$ & $\mu(\{2, 3\})$\\
+           $1$ & $1$ & $1$ & $\mu(\{1, 2, 3\})=1$, por definición\\ 
+               &  &  & $\mu(\{4, 3\}) = 0$, por definición\\          
+         \end{tabular}
+         $$
+       \end{frame}
+
+       \begin{frame}
+         \frametitle{Evaluación de las alternativas}
+         Al evaluar las alternativas tenemos:
+         \begin{small}
+           \begin{itemize}
+           \item Alternativa $a$
+             \begin{eqnarray*}
+               \mathcal{C}(0.6,0.6,1) &=& 0.6(\mu(\{1, 2, 3\}) -
+                                          \mu(\{2, 3\})) + \\
+                                      & & 0.6(\mu(\{2, 3\}) -
+                                          \mu(\{3\})) +  
+                                          1 (\mu(\{3\})-\mu(\{4, 3\}))\\
+                                      &=& 0.6 + 0.4 \mu(\{3\})
+             \end{eqnarray*}
+           \item Alternativa $b$
+             \begin{eqnarray*}
+               \mathcal{C}(0.9,0,1) &=& 0 (\mu(\{1, 2, 3\}) -
+                                        \mu(\{1, 3\})) +\\
+                                    & & 0.9(\mu(\{1, 3\}) - \mu(\{3\})) +
+                                        1 (\mu(\{3\}) - \mu(\{4, 3\}))\\
+                                    &=& 0.9 \mu(\{1, 3\}) + 0.1 \mu(\{3\})
+             \end{eqnarray*}
+           \item Alternativa $c$
+             \begin{eqnarray*}
+               \mathcal{C}(0,0.9,1) &=& 0 (\mu(\{1, 2, 3\}) - \mu(\{2,
+                                        3\})) + \\
+                                    & & 0.9 (\mu(\{2, 3\}) -
+                                        \mu(\{3\})) + 
+                                        1 (\mu(\{3\}) - \mu(\{4, 3\}))\\
+                                    &=& 0.9 \mu(\{2, 3\}) + 0.1 \mu(\{3\})
+             \end{eqnarray*}
+           \end{itemize}
+         \end{small}
+       \end{frame}
+
+       \begin{frame}
+         \frametitle{Evaluación}
+         Al evaluar las preferencias parciales se obtiene lo siguiente: 
+         \vskip 3 mm
+         $$
+         \begin{tabular}{rc}
+           $b \prec c$: & $0.9 \mu(\{1, 3\}) + 0.1 \mu(\{3\}) < 0.9
+                          \mu(\{2, 3\}) + 0.1 \mu(\{3\})$\\
+                        & $\mu(\{1, 3\}) < \mu(\{2, 3\})$\\
+           \\
+           $a \prec b$: & $0.6 + 0.4 \mu(\{3\}) < 0.9 \mu(\{1, 3\}) +
+                          0.1 \mu(\{3\})$\\
+                        &  $\frac{\mu(\{3\}) + 2}{3} < \mu(\{1, 3\})$
+         \end{tabular}
+         $$
+         \vskip 6 mm 
+         Tomando en cuenta la preferencia del DM $(a \prec b \prec c)$ tenemos:
+         $$
+         \frac{\mu(\{3\}) + 2}{3} < \mu(\{1, 3\}) < \mu(\{2, 3\})
+         $$
+       \end{frame}
+
+       \begin{frame}
+         \frametitle{Asignar valor a las capacidades}
+         Asignando un valor a $\mu(\{3\})$, digamos
+    $$
+    \mu(\{3\}) = 0.4,
+    $$
+    estamos en condiciones de asignar valores a
+    $\mu(\{1, 3\})$ y $\mu(\{2, 3\})$.
+    \vskip 4 mm
+    Atendiendo a la expresión anterior y al valor asignado a $ \mu(\{3\})$, vemos que $\mu(\{1, 3\})$
+    debe ser mayor a $0.8$, pongamos:
+    $$
+    \mu(\{1, 3\}) = 0.9
+    $$
+    y, dado que $\mu(\{2, 3\})$ debe ser mayor a $\mu(\{1, 3\})$, podemos asignar:
+    $$
+    \mu(\{2, 3\}) = 0.95
+    $$
+    \vskip 4 mm De esta manera, se satisface la preferencia del DM:
+    $$
+    a \prec b \prec c
+    $$
+  \end{frame}
+
+  \begin{frame}
+  \frametitle{Analisis de los resultados}
+  Mediante este modesto ejemplo, es posible resaltar algunos aspectos:
+  \begin{itemize}
+  \item El que se requiera un valor para la capacidad $\mu(\{1, 3\})$
+    significa que existe relación entre los criterios 1 y
+    3. Similarmente, por $\mu(\{2, 3\})$ se advierte la relación entre los
+    criterios 2 y 3.
+  \item La integral de Choquet resultó adecuada, debido a que puede
+    representar relaciones entre criterios.
+  \item Para satisfacer los requerimientos del DM mediante la integral
+    de Choquet, no fueron necesarios los valores de las $2^N=2^3=8$
+    capacidades o \emph{pesos}.
+  \item Respetando los valores obtenidos para las capacidades
+    requeridas no es posible asignar
+    valores a las capacidades faltantes, de forma que se dé aditividad
+    o simetría. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusiones}
+  \begin{itemize}
+  \item La integral de Choquet es adecuada en la solución de problemas multicriterio,
+    cuando existe relación entre criterios.  
+    \vskip 6 mm
+  \item El problema fundamental radica en la obtención de $2^N$
+    capacidades donde $N$ es el número de características. 
+    \vskip 6 mm   
+  \item Un porcentaje de valores de las capacidades se debe modelar de
+    acuerdo a los requerimientos del DM, mientras que otros deben de
+    ser asignados de forma que el operador de consenso cumpla con
+    propiedades \emph{deseables}.
+  \end{itemize}
+\end{frame}
+
+% MAS INFORMACIÓN EN:
+\begin{frame}
+  \frametitle{Más información}
+
+   \begin{thebibliography}{12}
+
+     \beamertemplatearticlebibitems
+     % Followed by interesting articles. Keep the list short.
+     
+   \bibitem{grabisch2010}
+     M. Grabisch y C. Labreuche, 
+     \newblock \textbf{A decade of application of the Choquet and Sugeno
+     integrals in multi-criteria decision aid}, 
+     \newblock \emph{Ann. Oper. Res.}, vol. 175, no 1, pp. 247-286, 2010.
+   \end{thebibliography}
+ \end{frame}
+
+ \begin{frame}
+   \frametitle{ }
+   \begin{center}
+     \Huge{Muchas gracias.}
+   \end{center}
+ \end{frame}
+ 
+ 
+\end{document}

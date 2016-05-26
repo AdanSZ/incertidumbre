@@ -1,0 +1,399 @@
+\documentclass{beamer}
+
+\mode<presentation>{
+  \usetheme{Szeged}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+%\usepackage{fourier}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+
+
+\title[Lógica difusa] %
+{¿Que es la lógica difusa}
+
+\subtitle {y por supuesto, ¿para que sirve?}
+
+\author[J. Waissman]{Julio Waissman Vilanova}
+
+\institute[] %
+{
+ Departamento de Matemáticas\\
+ \textbf{Universidad de Sonora}}
+
+ \date{}
+
+\subject{Soft Computing}
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+%\AtBeginSubsection[]
+%{
+%  \begin{frame}<beamer>
+%    \frametitle{Outline}
+%    \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+%}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command:
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Plan de la presentación}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+\section{Introducción no formal.}
+
+\begin{frame}
+  \frametitle{¿Lógica difusa?}
+Se conoce con el término genérico de \alert{Lógica Difusa} a un
+conjunto de técnicas basadas principalmente en el concepto de
+\emph{subconjunto difuso}.
+
+\
+
+En los años sesenta, Zadeh, propone el concepto de subconjunto difuso
+para:
+\begin{itemize}
+   \item utilizar \alert{información vaga},
+   \item manejar \alert{conocimiento incierto},
+   \item hacer sistemas \alert{fáciles de interpretar}. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Conjuntos \emph{crisp}}
+
+Sea $X$ un conjunto universo, el cual contiene todos los elementos que pueden interesar en alguna aplicación, y sea $A$ un subconjunto de $X$. La función característica de A (o función de pertenencia), $\chi_A: X \to \{0,1\}$ está definida como:
+$$
+\chi_A(x) = \left\{
+\begin{array}{ccc}
+1  & \text{si}  & x \in A  \\
+0  & \text{si}  & x \notin A  
+\end{array}
+\right.
+$$
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Operaciones en conjuntos}
+
+\begin{itemize}
+
+\item $A^c$ es el complemento de $A$ si $\chi_{A^c}(x) = 1-\chi_{A}(x)$ para
+todo $x \in X$. 
+
+\item $C$ es la intersección de $A$ y $B$, $C = A \cap B$ si
+$$
+\chi_C(x) = 
+\left\{
+\begin{array}{ccc}
+1  & \text{si}  & \chi_A(x) = \chi_B(x) = 1  \\
+0  &   &   \text{otro caso}
+\end{array}
+\right.
+$$  
+para toda $x \in X$. 
+
+\item $D$ es la union de $A$ y $B$, $D = A \cup B$ si, para toda $x$
+$$
+\chi_D(x) = 
+\left\{
+\begin{array}{ccc}
+1  & \text{si}  & \chi_A(x) = 1 \text{ o } \chi_B(x) = 1  \\
+0  &   &   \text{otro caso}
+\end{array}
+\right.
+.
+$$  
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplos de conjuntos}
+
+Ejemplos:
+\begin{itemize}
+\item Conjunto de personas de sexo masculino en la sala.
+\item Conjunto de gatos con tres patas.
+\item Conjunto de números primos.
+\item Conjunto de funciones lineales.
+\item Conjunto de conjuntos con un número infinito de elementos.
+\item Conjunto de conjuntos que no se pertenecen a sí mísmos.   
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Otro ejemplo}
+
+Sea $U$ es el conjunto de mexicanos. Sea 
+
+\begin{itemize}
+   \item $J$ el conjunto de los mexicanos <<Jóvenes>>
+   \item $V$ el conjunto de los mexicanos <<Viejos>>
+\end{itemize}
+
+\
+
+Si bien es difícil determinar cuando un elemento del conjunto universo
+(mexicanos) pertenece al conjunto <<Jóvenes>>, es bastante
+comprometedor definir <<Viejos>>.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Otro ejemplo}
+
+Según el
+IMSS (\url{http://www.pensionesimss.com.mx/60o65.html}), uno se puede
+jubilar a los:
+\begin{itemize}
+   \item 60 años con el 75\% del salario,
+   \item 61 años con el 80\% del salario,
+   \item 62 años con el 85\% del salario,
+   \item 63 años con el 90\% del salario,
+   \item 64 años con el 95\% del salario,
+   \item 65 años con el 100\% del salario,
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Noción informal del subconjunto difuso}
+
+  \begin{itemize}
+  \item ¿Y el conjunto de colores agradables?
+  \item ¿Y el conjunto de mexicanos <<guapos>>?
+  \end{itemize}
+
+En estos conjuntos es difícil definir la función característica.
+
+
+\begin{alertblock}{}
+Un subconjunto difuso $A$ de un conjunto universo $X$ es una función $A : X \to [0,1]$.
+\end{alertblock}
+
+\
+
+Tambien se utiliza la notación $\mu_A: X \to [0,1]$ como \emph{función
+de pertenencia}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Subconjuntos difusos}
+\begin{center}
+Fáciles de calcular
+
+\includegraphics[width = 0.7\textwidth]{FP_T.pdf}
+
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Operaciones en subconjuntos difusos}
+\begin{center}
+\includegraphics[width = .6\textwidth]{conlog.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{La lógica difusa no es probabilidad}
+
+  \begin{itemize}
+  \item La lógica difusa expresa incertidumbre en el concepto (manejo
+    de lenguaje impreciso).
+    \item La probabilidad expresa incertidumbre en la ocurrencia de un evento.
+  \end{itemize}
+
+Ejemplo:
+  \begin{itemize}
+   \item ``El alumno X está durmiendo'' con un grado
+     de verdad de 0.5.
+   \item La probabilidad que ``El alumno X está durmiendo'' es de 0.5.
+  \end{itemize}
+
+\end{frame}
+
+
+\section{Sistemas de inferencia difusa}
+
+\begin{frame}
+  \frametitle{Variables lingüísticas}
+Las funciones de pertenencia permiten \alert{granular} una variable continua en variables lingüísticas con \alert{valores significativos}.
+\begin{itemize}
+   \item Cada valor lingüístico es un \emph{conjunto difuso}.
+   \item Es posible \alert{razonar} con valores lingüísticos.
+\end{itemize}
+\begin{center}
+\includegraphics[width = .8\textwidth]{varling.png}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Sistema de inferencia difuso (FIS)}
+
+\begin{center}
+\includegraphics[width = \textwidth]{SID_general.pdf}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ejemplo sencillo de un FIS}
+
+\begin{center}
+\includegraphics[width = .65\textwidth]{SID_aire.pdf}
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Representación compacta de un FIS.}
+
+Ejemplo ilustrativo: ajustar el agua en la regadera
+
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+$\Delta T/ T$  &   Muy Fria   &   Fria   &   Tibia   &   Caliente   &
+Muy caliente   \\
+\hline
+\hline
+Baja rápido       &  -90   & -65     &  -45 &  -20   &   0    \\
+\hline
+Baja     &  -65   &   -45   &  -20 &  0   &   20     \\
+\hline
+Igual     &  -45   &   -20   &  0   &  20   &   45    \\
+\hline
+Sube     &  -20   &   0     &  20  &  45   &   65    \\
+\hline
+ Sube rápido     &  0     &   20     &  45 &  65   &   90    \\
+\hline
+\end{tabular}
+\end{center}
+
+Salida: Grados que gira la llave del agua fría.
+
+\end{frame}
+
+\section{¿Para que sirve la lógica difusa?}
+
+\begin{frame}
+  \frametitle{Rechazo inicial a la lógica difusa}
+
+Los conceptos de lógica difusa y conjuntos difusos no tuvieron una
+buena acogida dentro de la comunidad científica estadounidense y
+europea debido principalmente a 
+
+\begin{center}
+\alert{la profunda tradición científica en
+el respeto a los números (mediciones) y a la falta de respeto por las
+palabras (percepciones)}.
+\end{center}
+\
+
+Afortunadamente, en Japón fue bien recibida la idea. 
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Primeros éxitos (Control difuso)}
+
+  \begin{itemize}
+  \item 1987: Control de frenado y aceleración del metro de Sendai
+\begin{center}
+\includegraphics[width=.5\textwidth]{1987_sendai_subway.jpg}
+\end{center}
+
+  \end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Primeros éxitos (Control difuso)}
+
+  \begin{itemize}
+  \item 1988: Se crea el LIFE (Laboratory for International Fuzzy
+    Engineering) en Japón, apoyado por 48 compañías.
+    \item Cannon desarrolla una camara con autoenfoque utilizando
+      control difuso
+\begin{center}
+\includegraphics[width=.5\textwidth]{CannonT90.jpg}
+\end{center}
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Consolidación}
+
+  \begin{itemize}
+  \item Utilización como controladores industriales
+\begin{center}
+\includegraphics[width=.3\textwidth]{fuzzy_control.jpg}
+\end{center}
+
+\item Utilización generalizada en bienes de consumo (lavatrastes,
+  aspiradoras, lavadoras,...). 
+ \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{¿Y sirve para todo?}
+
+La lógica difusa es buena cuando:
+\begin{itemize}
+\item No se conoce bien el proceso pero se sabe operarlo
+\item Se conoce el modelo pero es muy complejo
+\item Las mediciones son inciertas
+\end{itemize}
+
+La lógica difusa \alert{no} es recomendable cuando:
+\begin{itemize}
+\item Se tiene un modelo confiable del proceso
+\item El problema no presenta incertidumbres
+\item El proceso es muy rápido
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Huge{\textsf{\textbf{Gracias por su atención}}}
+\end{center}
+\end{frame}
+
+
+\end{document}

@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introducci\'on no formal.}{3}{0}{1}
+\beamer@sectionintoc {2}{Sistemas de inferencia difusa}{13}{0}{2}
+\beamer@sectionintoc {3}{\IeC {\textquestiondown }Para que sirve la l\'ogica difusa?}{17}{0}{3}

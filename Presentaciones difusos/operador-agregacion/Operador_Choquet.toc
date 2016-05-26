@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {spanish}
+\beamer@sectionintoc {1}{Operadores de agregaci\IeC {\'o}n}{3}{0}{1}
+\beamer@sectionintoc {2}{Operadores de consenso}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{Media aritm\IeC {\'e}tica ponderada}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Promedio ponderado ordenado}{9}{0}{2}
+\beamer@subsectionintoc {2}{3}{Integral de Choquet}{11}{0}{2}
+\beamer@sectionintoc {3}{Ejemplo ilustrativo}{16}{0}{3}
+\beamer@subsectionintoc {3}{1}{Modelado con WAM}{17}{0}{3}
+\beamer@subsectionintoc {3}{2}{Modelado con OWA}{18}{0}{3}
+\beamer@subsectionintoc {3}{3}{Modelado con la integral de Choquet}{19}{0}{3}
